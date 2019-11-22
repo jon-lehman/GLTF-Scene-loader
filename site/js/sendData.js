@@ -53,7 +53,7 @@ function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dum
     sceneName: sceneName
   })
   
-  var newSceneURL = "https://modelshare-firebase.glitch.me/?" + newSavedEnvironment.key;
+  var newSceneURL = "https://modelshare.app/?" + newSavedEnvironment.key;
   document.querySelector('#name-modal').setAttribute('style', 'display: none');
   document.querySelector('#complete-modal').setAttribute('style', 'display: flex');
   document.querySelector('#copy-url').innerHTML = newSceneURL;
