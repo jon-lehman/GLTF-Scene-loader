@@ -1,4 +1,4 @@
-# Enviroshare
+# Modelshare
 
 An easy way for non-technical users to upload a 3D environment, make adjustments, and share that environment with virtually anyone. Environments can be experienced on desktop/laptop, mobile, and VR headsets.
 
