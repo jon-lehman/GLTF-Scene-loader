@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Enviroshare</title>
+    <meta name="description" content="Share 3D & VR Environments with Anyone">
+    <!-- Aframe libraries -->
+    <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.0.1/dist/aframe-extras.min.js"></script>
+    <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+    <!-- Firebase Libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyC1ld8ySUelCrZlFoftivx9qNMpkOguVY8",
+        authDomain: "modelshare-a2750.firebaseapp.com",
+        databaseURL: "https://modelshare-a2750.firebaseio.com",
+        projectId: "modelshare-a2750",
+        storageBucket: "modelshare-a2750.appspot.com",
+        messagingSenderId: "885845930085",
+        appId: "1:885845930085:web:663ec6f61a0d8bda5e568c",
+        measurementId: "G-RXSQCXST3P"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+    <!-- Custom Libraries -->
+    <link rel="stylesheet" href="style.css">
+    <script src="js/controls.js"></script>
+    <script src="js/utilities.js"></script>
+    
+  </head>
+  <body onload="checkToggles();">
+    
+      <button class="device-permission" onclick="requestDeviceMotionPerm();">Grant Device Motion Permission</button>
+    
+      <!-- ============
+           Controls
+      ============= -->
+      <div class="controls">  
+        
+        
+        <!-- Model Controls-->
+        <div class="form-section model-controls">
+          
+          <!-- Model URL -->
+          <div class="form-group model-url">
+            <svg class="icon" width="21" height="21" viewbox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.75 21V18.9H18.9V15.75H21V19.425C21 19.8345 20.832 20.202 20.517 20.517C20.202 20.832 19.8345 21 19.425 21H15.75ZM5.25 21H1.575C1.1655 21 0.798 20.832 0.483 20.517C0.168 20.202 0 19.8345 0 19.425V15.75H2.1V18.9H5.25V21ZM15.75 0H19.425C19.8345 0 20.202 0.168 20.517 0.483C20.832 0.798 21 1.1655 21 1.575V5.25H18.9V2.1H15.75V0ZM5.25 0V2.1H2.1V5.25H0V1.575C0 1.1655 0.168 0.798 0.483 0.483C0.798 0.168 1.1655 0 1.575 0H5.25ZM11.55 16.0125L15.75 13.5975V8.778L11.55 11.193V16.0125ZM10.5 9.366L14.7 6.9615L10.5 4.494L6.3 6.9615L10.5 9.366ZM5.25 13.5975L9.45 16.0125V11.193L5.25 8.778V13.5975ZM17.0415 5.8695C17.5665 6.2055 17.85 6.657 17.85 7.2555V13.8915C17.85 14.49 17.5665 14.9415 17.0415 15.2775L11.2875 18.6165C10.7625 18.9525 10.2375 18.9525 9.7125 18.6165L3.9585 15.2775C3.4335 14.9415 3.15 14.49 3.15 13.8915V7.2555C3.15 6.657 3.4335 6.2055 3.9585 5.8695L9.7125 2.5305C9.975 2.394 10.2375 2.331 10.5 2.331C10.7625 2.331 11.025 2.394 11.2875 2.5305L17.0415 5.8695Z" fill="var(--black)"/></svg>
+            <div class="input-group">
+              <input id="input-model-url" autocomplete="off" value="" type="text" required onfocus="controlFocus(this.id)" onblur="controlBlur(this.id)"/>
+              <label>GLTF URL</label>
+            </div>
+            <div class="tooltip"><b>GLTF URL: </b>The direct web url or local address to your .gltf model</div>
+          </div>
+          
+          <!-- Model Scale Multiplier -->
+          <div class="form-group">
+            <svg class="icon" width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.449 11L13.849 6.6H9.9V4.4H17.6V12.1H15.4V8.151L11 12.551V15.4H19.8V2.2H6.6V11H9.449ZM22 0V17.6H11V22H0V11H4.4V0H22ZM8.8 13.2H2.2V19.8H8.8V13.2Z" fill="var(--black)"/></svg>
+            <div class="input-group">
+              <input id="input-scale-multiplier" type="number" placeholder="1" value="1" step="0.01" required onfocus="controlFocus(this.id)" onblur="controlBlur(this.id)"/>
+            </div>
+            <div class="tooltip">Model Scale</div>
+          </div>
+          
+          <!-- Model Position -->
+          <div class="form-group">
+            <svg class="icon" width="11" height="22" viewbox="0 0 11 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11 16.55L5.5 22L0 16.55L1.42294 15.14L4.49083 18.17V3.83L1.42294 6.86L0 5.45L5.5 0L11 5.45L9.57706 6.86L6.50917 3.83V18.17L9.57706 15.14L11 16.55Z" fill="var(--black)"/></svg>
+            <div class="input-group">
+              <input id="input-model-position" type="number" value="0" step="0.01" required onfocus="controlFocus(this.id)" onblur="controlBlur(this.id)" />
+            </div>
+            <div class="tooltip">Model Y Position</div>
+          </div>
+
+        </div> <!-- end Model Control section -->
+        
+        <!-- Environment Controls -->
+        <div class="form-section">
+        
+          <!-- Fly Toggle -->
+          <div class="form-group">
+            <input id="toggle-fly" type="checkbox" checked onchange="checkToggle(this.id);" value="Enabled" />
+            <svg class="icon" width="26" height="26" viewbox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.1 13C9.1 11.947 9.49 11.05 10.257 10.257C11.05 9.49 11.947 9.1 13 9.1C14.053 9.1 14.95 9.49 15.743 10.257C16.51 11.05 16.9 11.947 16.9 13C16.9 14.053 16.51 14.95 15.743 15.743C14.95 16.51 14.053 16.9 13 16.9C11.947 16.9 11.05 16.51 10.257 15.743C9.49 14.95 9.1 14.053 9.1 13ZM4.589 8.372L6.903 10.686L4.589 13L6.903 15.314L4.589 17.628L0 13L4.589 8.372ZM8.372 21.411L10.686 19.097L13 21.411L15.314 19.097L17.628 21.411L13 26L8.372 21.411ZM21.411 17.628L19.097 15.314L21.411 13L19.097 10.686L21.411 8.372L26 13L21.411 17.628ZM17.628 4.589L15.314 6.903L13 4.589L10.686 6.903L8.372 4.589L13 0L17.628 4.589Z" fill="var(--black)"/></svg>
+            <div class="tooltip">Toggle Fly Mode</div>
+          </div>
+          
+          <!-- Dummy Toggle -->
+          <div class="form-group">
+            <input id="toggle-dummy" type="checkbox" unchecked onchange="checkToggle(this.id);" value="Enabled" />
+            <svg class="icon" width="24" height="26" viewbox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23.4 9.1H15.6V26H13V18.2H10.4V26H7.8V9.1H0V6.5H23.4V9.1ZM11.7 0C12.3896 0 13.0509 0.273928 13.5385 0.761522C14.0261 1.24912 14.3 1.91044 14.3 2.6C14.3 3.28956 14.0261 3.95088 13.5385 4.43848C13.0509 4.92607 12.3896 5.2 11.7 5.2C10.257 5.2 9.1 4.03 9.1 2.6C9.1 1.157 10.257 0 11.7 0Z" fill="var(--black)"/></svg>
+            <div class="tooltip">Toggle Reference Dummy</div>
+          </div>
+          
+          <!-- Grid Toggle -->
+          <div class="form-group">
+            <input id="toggle-grid" type="checkbox" checked onchange="checkToggle(this.id);" value="Enabled" />
+            <svg class="icon" width="26" height="26" viewbox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.4 2.6V7.8H15.6V2.6H10.4ZM18.2 2.6V7.8H23.4V2.6H18.2ZM18.2 10.4V15.6H23.4V10.4H18.2ZM18.2 18.2V23.4H23.4V18.2H18.2ZM15.6 23.4V18.2H10.4V23.4H15.6ZM7.8 23.4V18.2H2.6V23.4H7.8ZM7.8 15.6V10.4H2.6V15.6H7.8ZM7.8 7.8V2.6H2.6V7.8H7.8ZM10.4 15.6H15.6V10.4H10.4V15.6ZM2.6 0H23.4C24.0896 0 24.7509 0.273928 25.2385 0.761522C25.7261 1.24912 26 1.91044 26 2.6V23.4C26 24.0896 25.7261 24.7509 25.2385 25.2385C24.7509 25.7261 24.0896 26 23.4 26H2.6C1.196 26 0 24.83 0 23.4V2.6C0 1.91044 0.273928 1.24912 0.761522 0.761522C1.24912 0.273928 1.91044 0 2.6 0Z" fill="var(--black)"/></svg>
+            <div class="tooltip">Toggle Grid</div>
+          </div>
+          
+          <!-- Fog Toggle -->
+          <div class="form-group">
+            <input id="toggle-fog" type="checkbox" checked onchange="checkToggle(this.id);" value="Enabled" />
+            <svg class="icon" width="27" height="22" viewbox="0 0 27 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.45455 14.4H14.7273C15.0528 14.4 15.3649 14.5264 15.5951 14.7515C15.8252 14.9765 15.9545 15.2817 15.9545 15.6C15.9545 15.9183 15.8252 16.2235 15.5951 16.4485C15.3649 16.6736 15.0528 16.8 14.7273 16.8H2.45455C2.12905 16.8 1.81689 16.6736 1.58673 16.4485C1.35657 16.2235 1.22727 15.9183 1.22727 15.6C1.22727 15.2817 1.35657 14.9765 1.58673 14.7515C1.81689 14.5264 2.12905 14.4 2.45455 14.4ZM18.4091 14.4H24.5455C24.8709 14.4 25.1831 14.5264 25.4133 14.7515C25.6434 14.9765 25.7727 15.2817 25.7727 15.6C25.7727 15.9183 25.6434 16.2235 25.4133 16.4485C25.1831 16.6736 24.8709 16.8 24.5455 16.8H18.4091C18.0836 16.8 17.7714 16.6736 17.5413 16.4485C17.3111 16.2235 17.1818 15.9183 17.1818 15.6C17.1818 15.2817 17.3111 14.9765 17.5413 14.7515C17.7714 14.5264 18.0836 14.4 18.4091 14.4ZM0 10.8C0 9.2087 0.646508 7.68258 1.7973 6.55736C2.94809 5.43214 4.5089 4.8 6.13636 4.8C7.36364 1.98 10.1864 0 13.5 0C17.7095 0 21.1582 3.192 21.4773 7.236L22.0909 7.2C24.7786 7.2 26.9632 9.312 27 12H24.5455C24.5455 11.3635 24.2869 10.753 23.8265 10.3029C23.3662 9.85286 22.7419 9.6 22.0909 9.6H19.6364V8.4C19.6364 6.8087 18.9899 5.28258 17.8391 4.15736C16.6883 3.03214 15.1275 2.4 13.5 2.4C10.4318 2.4 7.91591 4.584 7.43727 7.428C7.03227 7.284 6.59045 7.2 6.13636 7.2C5.15988 7.2 4.2234 7.57928 3.53293 8.25442C2.84245 8.92955 2.45455 9.84522 2.45455 10.8C2.45455 11.22 2.52818 11.628 2.66318 12H0.122727L0 10.8ZM2.45455 19.2H4.90909C5.23458 19.2 5.54675 19.3264 5.7769 19.5515C6.00706 19.7765 6.13636 20.0817 6.13636 20.4C6.13636 20.7183 6.00706 21.0235 5.7769 21.2485C5.54675 21.4736 5.23458 21.6 4.90909 21.6H2.45455C2.12905 21.6 1.81689 21.4736 1.58673 21.2485C1.35657 21.0235 1.22727 20.7183 1.22727 20.4C1.22727 20.0817 1.35657 19.7765 1.58673 19.5515C1.81689 19.3264 2.12905 19.2 2.45455 19.2ZM8.59091 19.2H24.5455C24.8709 19.2 25.1831 19.3264 25.4133 19.5515C25.6434 19.7765 25.7727 20.0817 25.7727 20.4C25.7727 20.7183 25.6434 21.0235 25.4133 21.2485C25.1831 21.4736 24.8709 21.6 24.5455 21.6H8.59091C8.26542 21.6 7.95325 21.4736 7.7231 21.2485C7.49294 21.0235 7.36364 20.7183 7.36364 20.4C7.36364 20.0817 7.49294 19.7765 7.7231 19.5515C7.95325 19.3264 8.26542 19.2 8.59091 19.2Z" fill="var(--black)"/></svg>
+            <div class="tooltip">Toggle Fog</div>
+          </div>
+          
+          <!-- Background Color -->
+          <div class="form-group">
+            <input id="input-background-color" type="color" placeholder="#FFFFFF" value="#FFFFFF" required />
+            <svg class="icon" width="24" height="24" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37333 0 0 5.37333 0 12C0 18.6267 5.37333 24 12 24C13.1067 24 14 23.1067 14 22C14 21.48 13.8 21.0133 13.48 20.6533C13.1733 20.3067 12.9733 19.84 12.9733 19.3333C12.9733 18.2267 13.8667 17.3333 14.9733 17.3333H17.3333C21.0133 17.3333 24 14.3467 24 10.6667C24 4.77333 18.6267 0 12 0ZM4.66667 12C3.56 12 2.66667 11.1067 2.66667 10C2.66667 8.89333 3.56 8 4.66667 8C5.77333 8 6.66667 8.89333 6.66667 10C6.66667 11.1067 5.77333 12 4.66667 12ZM8.66667 6.66667C7.56 6.66667 6.66667 5.77333 6.66667 4.66667C6.66667 3.56 7.56 2.66667 8.66667 2.66667C9.77333 2.66667 10.6667 3.56 10.6667 4.66667C10.6667 5.77333 9.77333 6.66667 8.66667 6.66667ZM15.3333 6.66667C14.2267 6.66667 13.3333 5.77333 13.3333 4.66667C13.3333 3.56 14.2267 2.66667 15.3333 2.66667C16.44 2.66667 17.3333 3.56 17.3333 4.66667C17.3333 5.77333 16.44 6.66667 15.3333 6.66667ZM19.3333 12C18.2267 12 17.3333 11.1067 17.3333 10C17.3333 8.89333 18.2267 8 19.3333 8C20.44 8 21.3333 8.89333 21.3333 10C21.3333 11.1067 20.44 12 19.3333 12Z" fill="var(--black)"/></svg>
+            <div class="tooltip">Background Color</div>
+          </div>
+          
+        </div>
+        
+        <input id="input-camera-position" type="text" style="display:none"/>
+        <input id="input-camera-rotation" style="display:none"/>
+        
+        <div class="form-section">
+          <button onclick="nameEnvironment();" value="Save Environment">Save Environment</button>
+        </div>
+        
+        <div id="name-modal" class="modal-overlay" onclick="closeModalOverlay(this.id)">
+          <div class="modal">
+            <div class="modal-close" id="name-modal-close" onclick="closeModalIcon(this.id)"><svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2.21571L19.7843 0L11 8.78429L2.21571 0L0 2.21571L8.78429 11L0 19.7843L2.21571 22L11 13.2157L19.7843 22L22 19.7843L13.2157 11L22 2.21571Z" fill="black"/></svg></div>
+            <div class="modal-content">
+              <h2>Just name your environment and you’re all set!</h2>
+              <div class="form-section">
+                <div class="form-group">
+                  <div class="input-group">
+                    <input id="input-environment-name" autocomplete="off" type="text" required onfocus="controlFocus(this.id)" onblur="controlBlur(this.id)"/>
+                    <label>Environment Name</label>
+                  </div>
+                </div>
+                <button onclick="saveEnvironment()">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div id="complete-modal" class="modal-overlay" onclick="closeModalOverlay(this.id)">
+          <div class="modal">
+            <div class="modal-close" id="complete-modal-close" onclick="closeModalIcon(this.id)"><svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2.21571L19.7843 0L11 8.78429L2.21571 0L0 2.21571L8.78429 11L0 19.7843L2.21571 22L11 13.2157L19.7843 22L22 19.7843L13.2157 11L22 2.21571Z" fill="black"/></svg></div>
+            <div class="modal-content">
+              <h2>Whalah, you’re all set! Just send the link below to share.</h2>
+              <div id="copy-url"></div>
+            </div>
+          </div>
+        </div>
+        
+    </div>
+    
+    <!-- Hidden position inputs -->
+    <input id="saved-camera-position" style="display:none" />
+    <input id="saved-camera-rotation" style="display:none"/>
+    
+     <!-- ============
+        aframe scene
+      ============= -->
+    <div class="aframe-container">
+      <a-scene scene embedded fog="type: exponential; color: #FFFFFF; far: 20; near: 0; density: 0.06">
+        
+        <a-assets>
+          <a-mixin id="dummy-axis" material="color: #25D18C; transparent: true; opacity:.25;" geometry="primitive: cylinder; height: 12; radius: .005"></a-mixin>
+        </a-assets>
+        
+        <a-entity camera-rig id="camera-rig" position="0 2 6" rotation="0 0 0" movement-controls="controls: touch; fly: true; speed:0.3">
+          <a-camera id="camera" camera-tracker camera look-controls wasd-controls="fly: true; acceleration: 300" position="0 0 0"></a-camera>
+          <a-entity id="left-hand" hand-controls="left" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
+          <a-entity id="right-hand" hand-controls="right" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
+        </a-entity>
+        
+        <a-entity visible="false" dummy>
+          <a-entity gltf-model="url(https://raw.githubusercontent.com/jon-lehman/GLTF-Scene-loader/master/Assets/vrheadset/gltf/scene.gltf)" position="0 2 0" scale=".34 .34 .34" rotation="0 180 0"></a-entity>
+          <a-entity mixin="dummy-axis" rotation="90 0 0" position="0 1.9 -6.2"></a-entity>
+          <a-entity mixin="dummy-axis" rotation="75 0 0" position="0 .3 -6"></a-entity>
+          <a-entity mixin="dummy-axis" rotation="105 0 0" position="0 3.5 -6"></a-entity>
+          <a-entity mixin="dummy-axis" rotation="90 15 0" position="-1.65 1.9 -6"></a-entity>
+          <a-entity mixin="dummy-axis" rotation="90 -15 0" position="1.65 1.9 -6"></a-entity>
+        </a-entity>
+        
+        <a-entity model id="model" position="0 0 0" scale="1 1 1" ></a-entity>
+        <a-grid grid visible="true" width="50" height="50" material="shader: flat; opacity: .2"/>
+      </a-scene>
+    </div>
+    <!-- Global Variables -->
+    <script>
+      var regex = /[+-]?\d+(\.\d+)?/g; 
+      var sceneEl = document.querySelector('a-scene');
+      var camera = sceneEl.querySelector('a-camera');
+      var cameraRig = sceneEl.querySelector('#camera-rig');
+    </script>
+    <script src="js/receiveData.js"></script>
+    <script src="js/sendData.js"></script>
+  </body>
+</html>
