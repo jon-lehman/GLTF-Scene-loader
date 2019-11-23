@@ -286,12 +286,22 @@ input[type="color"]{
   margin-left:20px;
 }
 
-#copy-url {
+#new-environment-url {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   font-size: 14px;
-  padding: 16px 32px;
+  padding: 16px 21px;
   background-color: rgba(0,0,0,.07);
-  border-radius: 4px;
-  user-select: all;
+  border-radius: 8px;
+}
+
+#copy-url {
+  margin-right: 16px;
+}
+
+.url-icons {
+  margin-left: 21px;
 }
 
 /* //////////////

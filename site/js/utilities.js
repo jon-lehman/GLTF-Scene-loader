@@ -1,7 +1,7 @@
 // Device Motion Permission
-if (location.protocol != 'https:') {
+/*if (location.protocol != 'https:') {
  location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-}
+}*/
 function requestDeviceMotionPerm () {
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
@@ -15,7 +15,7 @@ function requestDeviceMotionPerm () {
   } else {
     // handle regular non iOS 13+ devices
   }
-}
+};
 
 // Check toggle controls state on load and apply style
 function checkToggles() {

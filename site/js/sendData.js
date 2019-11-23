@@ -58,5 +58,8 @@ function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dum
   document.querySelector('#complete-modal').setAttribute('style', 'display: flex');
   document.querySelector('#copy-url').innerHTML = newSceneURL;
   document.querySelector('#newSceneEnvironment');
-  
+
+  document.getElementById("icon-open-url").addEventListener('click',function () {
+    window.open(newSceneURL); 
+  });  
 }
