@@ -5,23 +5,27 @@ An easy way for non-technical users to upload a 3D environment, make adjustments
 Allow clients to walkthrough a kitchen renovation, reference a project when you're not at the job-site, jump in VR to get inspired.
 
 ---
+### Road to Beta:
+- ~Add scene name modal~
+- ~Add form response - copy URL modal~
+- Onboarding Modal on first visit
+- Device motion permission only if no permitted yet
+- Figure out rotation issue
 
-### Road to V1:
-- Style Desktop UI
-- Style Mobile UI
-- Add validation styles
-- Fix initial rotation
-- Fix rotation saving
-- Add scene name modal
-- Add form response - copy URL modal
-- Add scene name validation based on previous saved environments
+### Backlog for V1:
+- Mobile Controls
+- Controls validation
+- Landing Page
+- More model format options
 
-### Post V1:
-+ Form elements in VR
+### Backlog for Post V1:
+- Form elements in VR
 --- https://github.com/etiennepinchon/aframe-material
-+ Google Poly integration in pancake
-+ Google Poly integration in VR
-+ Allow adding 'points of interest' (3D tooltips)
+- Google Poly integration in pancake
+- Google Poly integration in VR
+- Allow adding 'points of interest' (3D tooltips)
+- User authentication to manage saved environments
+- upload models to firebase storage for limited amount of time or pay
 
 ---
 
