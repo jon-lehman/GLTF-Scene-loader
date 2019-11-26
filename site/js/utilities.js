@@ -1,13 +1,13 @@
 // Device Motion Permission
-/*if (location.protocol != 'https:') {
- location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-}*/
+//if (location.protocol != 'https:') {
+// location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+//}
 function requestDeviceMotionPerm () {
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
         if (permissionState === 'granted') {
-          document.querySelector('.device-permission').setAttribute("style", "display:none;");
+          document.getElementById('device-permission-modal').setAttribute("style", "display:none;");
           window.addEventListener('devicemotion', () => {});
         }
       })

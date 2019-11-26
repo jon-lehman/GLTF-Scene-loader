@@ -71,4 +71,50 @@ if (isSavedUrl === true) {
         }
      });
   }
+} 
+
+// Trigger Tutorial on first visit
+else if (!localStorage.getItem("visted") && window.innerWidth > 960) {
+  triggerTutorialModal()
+}
+else{};
+
+function triggerTutorialModal() {
+  localStorage.setItem("visted",true);
+  document.getElementById('tutorial-modal').setAttribute('style', 'display: flex');
+  var tutorialSlider = document.getElementById('tutorial-slider');
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+
+  function closeTutorial() {
+    document.getElementById('tutorial-modal').setAttribute('style', 'display: none');
+    tutorialSlider.setAttribute('style', 'transform: translateX(0px)');
+  }
+
+  function tutorialNavShowMeHow() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
+  }
+
+  function tutorialNavSlideOneNext() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
+  }
+
+  function tutorialNavSlideTwoPrevious() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
+  }
+
+  function tutorialNavSlideTwoNext() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3+'px)');
+  }
+
+  function tutorialNavSlideThreePrevious() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
+  }
+
+  function tutorialNavSlideThreeNext() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 4 +'px)');
+  }
+
+  function tutorialNavSlideFourPrevious() {
+    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3 +'px)');
+  }
 }

@@ -38,20 +38,21 @@ button {
   font-weight: 500;
 }
 
+button.secondary {
+  box-shadow: none;
+}
+
 button.a-enter-vr{
   background-color: var(--white);
   color: var(--black)
 }
 
-button.device-permission {display:none;}
-
-@media (pointer: coarse) {
-    button.device-permission {
-    display: block;
-    position: absolute;
-    z-index:999999999;
-    top: 45vh;
-  }
+.help-icon {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index:99999;
+  cursor: pointer;
 }
 
 /* //////////////
@@ -231,12 +232,16 @@ input[type="color"]{
   width:100vw;
   height: 100vh;
   position: absolute;
-  top:-24px;
+  z-index: 999;
   left:0;
   background-color: rgba(0,0,0,.8);
   display: none;
   align-items: center;
   justify-content: center;
+}
+
+.controls .modal-overlay {
+  top:-24px;
 }
 
 .modal {
@@ -250,6 +255,7 @@ input[type="color"]{
   height: auto;
   background-color: var(--white);
   padding: 64px 32px;
+  overflow:hidden;
 }
 
 .modal-close {
@@ -271,6 +277,15 @@ input[type="color"]{
   user-select: none;
 }
 
+.modal p {
+  font-size: 11px;
+}
+
+.modal-controls {
+  display: flex;
+  flex-direction: row;
+}
+
 .modal .input-group label {
   left: 18px;
   width: 100%;
@@ -280,10 +295,6 @@ input[type="color"]{
 
 .modal .form-section {
   box-shadow: none;
-}
-
-.modal button {
-  margin-left:20px;
 }
 
 #new-environment-url {
@@ -304,6 +315,18 @@ input[type="color"]{
   margin-left: 21px;
 }
 
+#tutorial-slider {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  width: 500%;
+  align-self: start;
+  transition: all 250ms ease-in-out;
+}
+
+#tutorial-slider .modal-content {
+  margin: 0 30px;
+}
 /* //////////////
 ==== Mobile ====
 ////////////// */
@@ -311,6 +334,9 @@ input[type="color"]{
 @media (hover: none) {
   .controls {
     display:none;
+  }
+  #device-permission-modal {
+    display: block;
   }
 }
 
