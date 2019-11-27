@@ -37,6 +37,7 @@ AFRAME.registerComponent('scene', {
       this.el.setAttribute('fog', 'color', inputBackgroundColorVal)
     });
 
+    // fog input control
     var inputToggleFog = document.querySelector('#toggle-fog');
     inputToggleFog.addEventListener('change', (event) => {
       if (inputToggleFog.checked == true) {
@@ -59,6 +60,7 @@ AFRAME.registerComponent('camera-tracker', {
         this.el.setAttribute('wasd-controls',"fly: true; acceleration: 300");
       } else {
         this.el.setAttribute('wasd-controls',"fly: false; acceleration: 80");
+        this.el.object3D.position.y = 1.6;
       }
     })
   }
@@ -72,11 +74,12 @@ AFRAME.registerComponent('camera-rig', {
     var inputToggleFly = document.querySelector('#toggle-fly');
     inputToggleFly.addEventListener('change', (event) => {
       if (inputToggleFly.checked == true) {
+        console.log('touch controls fly is enabled');
         this.el.setAttribute('movement-controls',"controls: touch; fly: true; speed:0.3");
       } else {
+        console.log('touch controls fly is disabled');
         this.el.setAttribute('movement-controls',"controls: touch; fly: false; speed:0.05");
-        camera.object3D.position.y = 1.6;
-        this.el.object3D.position.y = 0;
+        document.querySelector('a-camera').setAttribute('position', {y: 1.6})
       }
     })
   },
@@ -113,13 +116,6 @@ AFRAME.registerComponent('camera-rig', {
 
     // setting defined input to currentCameraRotationVector
     inputCameraRotation.setAttribute('value', currentCameraRotationVector);
-  },
-  init: function () {
-    // Listen for saved rotation
-    document.querySelector('#saved-camera-rotation').addEventListener('change', (event) => {
-      var savedCameraRotation = document.querySelector('#saved-camera-rotation').value
-      this.el.setAttribute('rotation', savedCameraRotation);
-    })
   }
 });
 

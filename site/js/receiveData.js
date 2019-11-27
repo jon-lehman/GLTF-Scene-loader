@@ -75,12 +75,15 @@ if (isSavedUrl === true) {
 } 
 
 // Trigger Tutorial on first visit
-else if (!localStorage.getItem("visted") && window.innerWidth > 960) {
-  triggerTutorialModal();
+else {
+  document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = -0.7560000000000002
+  document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y = 0.7940000000000004
+  document.querySelector('a-camera').setAttribute('position', '2.1856205378251268, 5.235374808189253, 2.597413047666393');
+
+  if (!localStorage.getItem("visted") && window.innerWidth > 960) {
+    triggerTutorialModal();
+  }
 }
-
-else{};
-
 //Tutorial Modal
 var tutorialSlider = document.getElementById('tutorial-slider');
 var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;

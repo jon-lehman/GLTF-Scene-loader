@@ -47,7 +47,7 @@ function saveEnvironment() {
   sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotationPitch, cameraRotationYaw, sceneName);
 };
 
-function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotation, sceneName) {
+function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotationPitch, cameraRotationYaw, sceneName) {
   let newSavedEnvironment = savedEnvironment.push();
   newSavedEnvironment.set({
     modelURL: modelURL,
