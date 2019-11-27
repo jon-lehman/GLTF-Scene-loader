@@ -8,11 +8,11 @@ Allow clients to walkthrough a kitchen renovation, reference a project when you'
 ### Road to Beta:
 - ~Add scene name modal~
 - ~Add form response - copy URL modal~
-- Onboarding Modal on first visit
+- ~Onboarding Modal on first visit~
 - ~Allow to optionally trigger tutorial after first visit~
 - Device motion permission only if no permitted yet
 - Figure out rotation issue
-- Get domain to work
+- ~Get domain to work~
 
 ### Backlog for V1:
 - Mobile Controls

@@ -36,6 +36,7 @@ button {
   border: 0px;
   border-radius: 4px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 button.secondary {
@@ -51,8 +52,11 @@ button.a-enter-vr{
   position: absolute;
   bottom: 12px;
   left: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
   z-index:99999;
-  cursor: pointer;
 }
 
 /* //////////////
@@ -281,6 +285,10 @@ input[type="color"]{
   font-size: 11px;
 }
 
+.modal .form-group {
+  margin-right: 32px;
+}
+
 .modal-controls {
   display: flex;
   flex-direction: row;
@@ -313,6 +321,7 @@ input[type="color"]{
 
 .url-icons {
   margin-left: 21px;
+  cursor: pointer;
 }
 
 #tutorial-slider {
@@ -326,6 +335,12 @@ input[type="color"]{
 
 #tutorial-slider .modal-content {
   margin: 0 30px;
+}
+
+#tutorial-slider img {
+  height: 171px;
+  width: 437px;
+  box-shadow: 0px 0px 0px 4px var(--black);
 }
 /* //////////////
 ==== Mobile ====
@@ -341,7 +356,8 @@ input[type="color"]{
 }
 
 @media (max-width: 960px) {
-  .controls {
+  .controls,
+  .help-icon {
     display:none;
   }
 }

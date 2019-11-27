@@ -15,15 +15,21 @@ var savedEnvironment = firebase.database().ref('savedEnvironments');
 
 function saveEnvironment() {
   
+  // Camera Position
   var cameraPosition = new THREE.Vector3();
   cameraPosition.setFromMatrixPosition(camera.object3D.matrixWorld);
   var cameraPosition = JSON.stringify(cameraPosition).match(regex).map(function(v) { return parseFloat(v); });
   var cameraPosition = cameraPosition.join(' ');
   
+  // Camera Rotation
   var cameraRotation = camera.getAttribute('rotation');
-  var cameraRotation = JSON.stringify(cameraRotation).match(regex).map(function(v) { return parseFloat(v); });
-  var cameraRotation = cameraRotation.join(' ');
+  console.log('this is the raw .getAttribute rotation: ' + cameraRotation);
+  //var cameraRotation = JSON.stringify(cameraRotation).match(regex).map(function(v) { return parseFloat(v); });
+  //console.log('this is rotation with json.stringify and regex: ' + cameraRotation);
+  //var cameraRotation = cameraRotation.join(' ');
+  //console.log('this the rotation after join: ' + cameraRotation);
   
+  // Control Values
   var modelURL = controlModelURL.value;
   var scaleMultiplier = controlScaleMultiplier.value;
   var modelPosition = controlModelPosition.value;

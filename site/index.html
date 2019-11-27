@@ -39,7 +39,7 @@
 
       <div id="device-permission-modal" class="modal-overlay" onclick="closeModalOverlay(this.id)">
         <div class="modal">
-          <div class="modal-close" id="complete-modal-close" onclick="closeModalIcon(this.id)"><svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2.21571L19.7843 0L11 8.78429L2.21571 0L0 2.21571L8.78429 11L0 19.7843L2.21571 22L11 13.2157L19.7843 22L22 19.7843L13.2157 11L22 2.21571Z" fill="black"/></svg></div>
+          <div class="modal-close" id="permission-modal-close" onclick="closeModalIcon(this.id)"><svg width="22" height="22" viewbox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 2.21571L19.7843 0L11 8.78429L2.21571 0L0 2.21571L8.78429 11L0 19.7843L2.21571 22L11 13.2157L19.7843 22L22 19.7843L13.2157 11L22 2.21571Z" fill="black"/></svg></div>
           <div class="modal-content">
             <h2>Modelshare needs access to your device motion for best experience</h2>
             <button class="device-permission" onclick="requestDeviceMotionPerm();">Grant Device Motion Permission</button>
@@ -48,9 +48,10 @@
       </div>
 
       <div class="help-icon" onclick="triggerTutorialModal()">
-        <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg style="display: inline-block; cursor: pointer" width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16.991 12.025L15.821 13.221C14.885 14.157 14.3 14.95 14.3 16.9H11.7V16.25C11.7 14.807 12.285 13.507 13.221 12.571L14.833 10.933C15.314 10.465 15.6 9.815 15.6 9.1C15.6 7.657 14.43 6.5 13 6.5C12.3104 6.5 11.6491 6.77393 11.1615 7.26152C10.6739 7.74912 10.4 8.41044 10.4 9.1H7.8C7.8 7.72087 8.34785 6.39823 9.32304 5.42304C10.2982 4.44785 11.6209 3.9 13 3.9C14.3791 3.9 15.7018 4.44785 16.677 5.42304C17.6521 6.39823 18.2 7.72087 18.2 9.1C18.2 10.244 17.732 11.271 16.991 12.025ZM14.3 22.1H11.7V19.5H14.3V22.1ZM13 0C11.2928 0 9.60235 0.336255 8.02512 0.989566C6.44788 1.64288 5.01477 2.60045 3.80761 3.80761C1.36964 6.24558 0 9.55219 0 13C0 16.4478 1.36964 19.7544 3.80761 22.1924C5.01477 23.3995 6.44788 24.3571 8.02512 25.0104C9.60235 25.6637 11.2928 26 13 26C16.4478 26 19.7544 24.6304 22.1924 22.1924C24.6304 19.7544 26 16.4478 26 13C26 5.811 20.15 0 13 0Z" fill="black"/>
-          </svg>
+        </svg>
+        <p style="font-size: 11px; margin-left: 12px; opacity: .5;">Version: Beta 0.1</p>
       </div>
     
       <!-- ============
@@ -190,15 +191,15 @@
           </div>
           <div class="modal-content">
             <h3>Start by inserting the URL to your 3D model.</h3>
-            <img src="assets/img-placeholder.png">
-            <p>For now,your model must be in GLTF format. There are many places to host your 3D model but Github is an excellent choice. Future versions will have more options for formatting and uploading, stay tuned.</p>
+            <img src="assets/tutorial-model-url.gif">
+            <p>Upload your GLTF model anywhere you'd like and paste the direct URL here. Keeping in mind that models over 18mb will likely crash on mobile devices. More options to be available in future versions.</p>
             <div class="modal-controls">
               <button onclick="tutorialNavSlideOneNext()">Next</button>
             </div>
           </div>
           <div class="modal-content">
             <h3>Position and Scale your Model</h3>
-            <img src="assets/img-placeholder.png">
+            <img src="assets/tutorial-model-modify.gif">
             <p>Sometimes the proportions or placement of your model may be off. Use the scale multiplier and Y Position controls to tweak it!</p>
             <div class="modal-controls">
               <button class="secondary" onclick="tutorialNavSlideTwoPrevious()">Previous</button>
@@ -207,7 +208,7 @@
           </div>
           <div class="modal-content">
             <h3>Customize the rest of the environment settings and camera placement.</h3>
-            <img src="assets/img-placeholder.png">
+            <img src="assets/tutorial-environment-modify.gif">
             <p>Use the second group of controls to toggle on/off the dummy, grid, and fog. Lastly, use the background color picker to set the tone.</p>
             <div class="modal-controls">
               <button class="secondary" onclick="tutorialNavSlideThreePrevious()">Previous</button>
@@ -216,7 +217,7 @@
           </div>
           <div class="modal-content">
             <h3>Save and Share Your Environment</h3>
-            <img src="assets/img-placeholder.png">
+            <img src="assets/tutorial-save-share.gif">
             <p>Saving your environment allows you to share your creation with anybody! View your environment on desktop, mobile, and even Virtual Reality!</p>
             <div class="modal-controls">
               <button class="secondary" onclick="tutorialNavSlideFourPrevious()">Previous</button>
@@ -248,7 +249,7 @@
         </a-entity>
         
         <a-entity visible="false" dummy>
-          <a-entity gltf-model="url(https://raw.githubusercontent.com/jon-lehman/GLTF-Scene-loader/master/Assets/vrheadset/gltf/scene.gltf)" position="0 2 0" scale=".34 .34 .34" rotation="0 180 0"></a-entity>
+          <a-entity gltf-model="url(https://raw.githubusercontent.com/jon-lehman/modelshare.app/master/3d-test-assets/vrheadset/gltf/scene.gltf)" position="0 2 0" scale=".34 .34 .34" rotation="0 180 0"></a-entity>
           <a-entity mixin="dummy-axis" rotation="90 0 0" position="0 1.9 -6.2"></a-entity>
           <a-entity mixin="dummy-axis" rotation="75 0 0" position="0 .3 -6"></a-entity>
           <a-entity mixin="dummy-axis" rotation="105 0 0" position="0 3.5 -6"></a-entity>

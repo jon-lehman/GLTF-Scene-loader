@@ -14,8 +14,6 @@ if (isSavedUrl === true) {
   if (savedEnvironment == null) {
     alert("Environment could not be found.")
   } else {
-    console.log("Yay! We found your saved environemnt");
-    
       var changeEvent = new Event('change');
 
       savedEnvironment.on('value', function(snapshot) {
@@ -36,7 +34,9 @@ if (isSavedUrl === true) {
 
         cameraRig.setAttribute('position', snapshot.child('cameraPosition').val());
         camera.setAttribute('position', '0 0 0');
-        cameraRig.setAttribute('rotation', snapshot.child('cameraRotation').val());
+        
+        console.log('camera rotation: ' + snapshot.child('cameraRotation').val());
+        //cameraRig.setAttribute('rotation', snapshot.child('cameraRotation').val());
 
         if (snapshot.child('fly').val() == "Enabled") {
           document.querySelector('#toggle-fly').checked = true;
@@ -75,46 +75,56 @@ if (isSavedUrl === true) {
 
 // Trigger Tutorial on first visit
 else if (!localStorage.getItem("visted") && window.innerWidth > 960) {
-  triggerTutorialModal()
+  triggerTutorialModal();
 }
+
 else{};
+
+//Tutorial Modal
+var tutorialSlider = document.getElementById('tutorial-slider');
+var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
 
 function triggerTutorialModal() {
   localStorage.setItem("visted",true);
   document.getElementById('tutorial-modal').setAttribute('style', 'display: flex');
-  var tutorialSlider = document.getElementById('tutorial-slider');
+}
+
+function closeTutorial() {
+  document.getElementById('tutorial-modal').setAttribute('style', 'display: none');
+  tutorialSlider.setAttribute('style', 'transform: translateX(0px)');
+}
+
+function tutorialNavShowMeHow() {
   var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
+}
 
-  function closeTutorial() {
-    document.getElementById('tutorial-modal').setAttribute('style', 'display: none');
-    tutorialSlider.setAttribute('style', 'transform: translateX(0px)');
-  }
+function tutorialNavSlideOneNext() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
+}
 
-  function tutorialNavShowMeHow() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
-  }
+function tutorialNavSlideTwoPrevious() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
+}
 
-  function tutorialNavSlideOneNext() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
-  }
+function tutorialNavSlideTwoNext() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3+'px)');
+}
 
-  function tutorialNavSlideTwoPrevious() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth+'px)');
-  }
+function tutorialNavSlideThreePrevious() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
+}
 
-  function tutorialNavSlideTwoNext() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3+'px)');
-  }
+function tutorialNavSlideThreeNext() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 4 +'px)');
+}
 
-  function tutorialNavSlideThreePrevious() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 2+'px)');
-  }
-
-  function tutorialNavSlideThreeNext() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 4 +'px)');
-  }
-
-  function tutorialNavSlideFourPrevious() {
-    tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3 +'px)');
-  }
+function tutorialNavSlideFourPrevious() {
+  var tutorialModalContentWidth = document.querySelector('#tutorial-modal .modal-content').offsetWidth + 60;
+  tutorialSlider.setAttribute('style', 'transform: translateX(-'+tutorialModalContentWidth * 3 +'px)');
 }

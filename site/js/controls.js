@@ -108,8 +108,6 @@ AFRAME.registerComponent('camera-rig', {
     var currentCameraRotationArray = JSON.stringify(currentCameraRotation).match(regex).map(function(v) { return parseFloat(v); });
     var currentCameraRotationVector = currentCameraRotationArray.join(' ');
     
-    console.log("current: " + currentCameraRotationVector);
-    
     // Define hidden rotation input
     var inputCameraRotation = document.querySelector("#input-camera-rotation");
 
@@ -121,8 +119,6 @@ AFRAME.registerComponent('camera-rig', {
     document.querySelector('#saved-camera-rotation').addEventListener('change', (event) => {
       var savedCameraRotation = document.querySelector('#saved-camera-rotation').value
       this.el.setAttribute('rotation', savedCameraRotation);
-      
-      console.log('saved: ' + document.querySelector('#saved-camera-rotation').value)
     })
   }
 });
