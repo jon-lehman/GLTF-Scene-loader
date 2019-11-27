@@ -22,12 +22,16 @@ function saveEnvironment() {
   var cameraPosition = cameraPosition.join(' ');
   
   // Camera Rotation
+  /*
   var cameraRotation = camera.getAttribute('rotation');
   console.log('this is the raw .getAttribute rotation: ' + cameraRotation);
-  //var cameraRotation = JSON.stringify(cameraRotation).match(regex).map(function(v) { return parseFloat(v); });
-  //console.log('this is rotation with json.stringify and regex: ' + cameraRotation);
-  //var cameraRotation = cameraRotation.join(' ');
-  //console.log('this the rotation after join: ' + cameraRotation);
+  var cameraRotation = JSON.stringify(cameraRotation).match(regex).map(function(v) { return parseFloat(v); });
+  console.log('this is rotation with json.stringify and regex: ' + cameraRotation);
+  var cameraRotation = cameraRotation.join(' ');
+  console.log('this the rotation after join: ' + cameraRotation);
+  */
+  var cameraRotationPitch = document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x
+  var cameraRotationYaw = document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y
   
   // Control Values
   var modelURL = controlModelURL.value;
@@ -40,7 +44,7 @@ function saveEnvironment() {
   var backgroundColor = controlBackgroundColor.value;
   var sceneName = controlSceneName.value;
   
-  sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotation, sceneName);
+  sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotationPitch, cameraRotationYaw, sceneName);
 };
 
 function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dummy, grid, fog, backgroundColor, cameraPosition, cameraRotation, sceneName) {
@@ -54,8 +58,8 @@ function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dum
     grid: grid,
     fog: fog,
     backgroundColor: backgroundColor,
-    cameraPosition: cameraPosition,
-    cameraRotation: cameraRotation,
+    cameraPositionPitch: cameraPositionPitch,
+    cameraRotationYaw: cameraRotationYaw,
     sceneName: sceneName
   })
   

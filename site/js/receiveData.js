@@ -35,7 +35,8 @@ if (isSavedUrl === true) {
         cameraRig.setAttribute('position', snapshot.child('cameraPosition').val());
         camera.setAttribute('position', '0 0 0');
         
-        console.log('camera rotation: ' + snapshot.child('cameraRotation').val());
+        document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = snapshot.child('cameraRotationPitch').val();
+        document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y = snapshot.child('cameraRotationYaw').val();
         //cameraRig.setAttribute('rotation', snapshot.child('cameraRotation').val());
 
         if (snapshot.child('fly').val() == "Enabled") {
