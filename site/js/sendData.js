@@ -58,7 +58,8 @@ function sendSavedEnvironment(modelURL, scaleMultiplier, modelPosition, fly, dum
     grid: grid,
     fog: fog,
     backgroundColor: backgroundColor,
-    cameraPositionPitch: cameraPositionPitch,
+    cameraPosition: cameraPosition,
+    cameraRotationPitch: cameraRotationPitch,
     cameraRotationYaw: cameraRotationYaw,
     sceneName: sceneName
   })
