@@ -247,8 +247,8 @@
         
         <a-entity camera-rig id="camera-rig" rotation="0 0 0" movement-controls="controls: touch; fly: true; speed:0.3">
           <a-camera id="camera" camera-tracker camera look-controls wasd-controls="fly: true; acceleration: 300"></a-camera>
-          <a-entity id="left-hand" hand-controls="left" teleport-controls="cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
-          <a-entity id="right-hand" hand-controls="right" teleport-controls="cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
+          <a-entity id="left-hand" hand-controls="left" teleport-controls="collisionEntities: #model, #grid; cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
+          <a-entity id="right-hand" hand-controls="right" teleport-controls="collisionEntities: #model, #grid; cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
         </a-entity>
         
         <a-entity visible="false" dummy>
@@ -261,7 +261,7 @@
         </a-entity>
         
         <a-entity model id="model" position="0 0 0" scale="1 1 1" ></a-entity>
-        <a-grid grid visible="true" width="50" height="50" material="shader: flat; opacity: .2"/>
+        <a-grid id="grid" grid visible="true" width="50" height="50" material="shader: flat; opacity: .2"/>
       </a-scene>
     </div>
     <!-- Global Variables -->
