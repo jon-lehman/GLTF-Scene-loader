@@ -239,7 +239,7 @@
         aframe scene
       ============= -->
     <div class="aframe-container">
-      <a-scene scene embedded fog="type: exponential; color: #FFFFFF; far: 20; near: 0; density: 0.06">
+      <a-scene scene embedded background="color:white" fog="type: exponential; color: #FFFFFF; far: 20; near: 0; density: 0.06">
         
         <a-assets>
           <a-mixin id="dummy-axis" material="color: #25D18C; transparent: true; opacity:.25;" geometry="primitive: cylinder; height: 12; radius: .005"></a-mixin>
@@ -247,8 +247,8 @@
         
         <a-entity camera-rig id="camera-rig" rotation="0 0 0" movement-controls="controls: touch; fly: true; speed:0.3">
           <a-camera id="camera" camera-tracker camera look-controls wasd-controls="fly: true; acceleration: 300"></a-camera>
-          <a-entity id="left-hand" hand-controls="left" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
-          <a-entity id="right-hand" hand-controls="right" teleport-controls="cameraRig: #cameraRig; teleportOrigin: #head;"></a-entity>
+          <a-entity id="left-hand" hand-controls="left" teleport-controls="cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
+          <a-entity id="right-hand" hand-controls="right" teleport-controls="cameraRig: #camera-rig; teleportOrigin: #camera;"></a-entity>
         </a-entity>
         
         <a-entity visible="false" dummy>
