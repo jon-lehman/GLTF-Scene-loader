@@ -31,12 +31,24 @@ if (isSavedUrl === true) {
         
         document.querySelector('#input-background-color').setAttribute('value', snapshot.child('backgroundColor').val());
         document.querySelector('#input-background-color').dispatchEvent(changeEvent);
-
-        camera.object3D.position.set( snapshot.child('cameraPosition').val() );
         
-        document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = snapshot.child('cameraRotationPitch').val();
+
+        var savedCameraX = snapshot.child('cameraPosition/x').val().toString();
+        var savedCameraY = snapshot.child('cameraPosition/y').val() - 1.6.toString();
+        var savedCameraZ = snapshot.child('cameraPosition/z').val().toString();
+        console.log('savedCameraX: ' + savedCameraX);
+        console.log('savedCameraY: ' + savedCameraY);
+        console.log('savedCameraZ: ' + savedCameraZ);
+        var savedCameraPosition = savedCameraX + ' ' + savedCameraY + ' ' + savedCameraZ;
+        console.log('savedCameraPosition: ' + savedCameraPosition);
+        cameraRig.setAttribute('position', savedCameraPosition);
+        
+        // set rotation, but no pitch on touch devices
+        var isTouchDevice = 'ontouchstart' in document.documentElement;
+        if (isTouchDevice != true) {
+          document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = snapshot.child('cameraRotationPitch').val();
+        }
         document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y = snapshot.child('cameraRotationYaw').val();
-        //cameraRig.setAttribute('rotation', snapshot.child('cameraRotation').val());
 
         if (snapshot.child('fly').val() == "Enabled") {
           document.querySelector('#toggle-fly').checked = true;
@@ -75,6 +87,7 @@ if (isSavedUrl === true) {
 
 // Trigger Tutorial on first visit
 else {
+  //set camera position and rotation if not saved environment
   document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = -0.7560000000000002
   document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y = 0.7940000000000004
   document.querySelector('a-camera').setAttribute('position', '2.1856205378251268, 5.235374808189253, 2.597413047666393');

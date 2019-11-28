@@ -79,11 +79,12 @@ AFRAME.registerComponent('camera-rig', {
       } else {
         console.log('touch controls fly is disabled');
         this.el.setAttribute('movement-controls',"controls: touch; fly: false; speed:0.05");
-        document.querySelector('a-camera').setAttribute('position', {y: 1.6})
+        document.querySelector('a-camera').object3D.position.y = 1.6;
+        //document.querySelector('a-camera').setAttribute('position', {y: 1.6})
       }
     })
-  },
-  
+  }});
+  /*
   //=========
   // Getting Camera Position/Rotation, inserting inputs, listening for saved position
   //=========
@@ -117,7 +118,7 @@ AFRAME.registerComponent('camera-rig', {
     // setting defined input to currentCameraRotationVector
     inputCameraRotation.setAttribute('value', currentCameraRotationVector);
   }
-});
+}); */
 
 // Dummy
 AFRAME.registerComponent('dummy', {
