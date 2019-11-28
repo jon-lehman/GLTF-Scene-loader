@@ -16,7 +16,7 @@ var savedEnvironment = firebase.database().ref('savedEnvironments');
 function saveEnvironment() {
   
   // Camera Position
-  var cameraPosition = new THREE.Vector3();
+  var cameraPosition = camera.getAttribute('position');
   
   // Camera Rotation
   /*
