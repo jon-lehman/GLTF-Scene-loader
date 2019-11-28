@@ -18,7 +18,6 @@ function saveEnvironment() {
   // Camera Position
   var cameraPosition = new THREE.Vector3();
   cameraPosition.setFromMatrixPosition(camera.object3D.matrixWorld);
-  var cameraPosition = JSON.stringify(cameraPosition).match(regex).map(function(v) { return parseFloat(v); });
   
   // Camera Rotation
   /*
