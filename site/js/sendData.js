@@ -17,7 +17,6 @@ function saveEnvironment() {
   
   // Camera Position
   var cameraPosition = new THREE.Vector3();
-  cameraPosition.setFromMatrixPosition(camera.object3D.matrixWorld);
   
   // Camera Rotation
   /*
