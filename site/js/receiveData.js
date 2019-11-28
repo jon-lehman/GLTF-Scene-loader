@@ -32,7 +32,7 @@ if (isSavedUrl === true) {
         document.querySelector('#input-background-color').setAttribute('value', snapshot.child('backgroundColor').val());
         document.querySelector('#input-background-color').dispatchEvent(changeEvent);
 
-        camera.setAttribute('position', snapshot.child('cameraPosition').val());
+        camera.object3D.position.set( snapshot.child('cameraPosition').val() );
         
         document.querySelector("a-camera").components["look-controls"].pitchObject.rotation.x = snapshot.child('cameraRotationPitch').val();
         document.querySelector("a-camera").components["look-controls"].yawObject.rotation.y = snapshot.child('cameraRotationYaw').val();
