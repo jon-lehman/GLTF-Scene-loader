@@ -1,5 +1,7 @@
 # Modelshare
 
+![Image of modelshare on various platforms](https://github.com/jon-lehman/modelshare.app/blob/master/site/assets/tutorial-intro.gif)
+
 An easy way for non-technical users to upload a 3D environment, make adjustments, and share that environment with virtually anyone. Environments can be experienced on desktop/laptop, mobile, and VR headsets.
 
 Allow clients to walkthrough a kitchen renovation, reference a project when you're not at the job-site, jump in VR to get inspired.
