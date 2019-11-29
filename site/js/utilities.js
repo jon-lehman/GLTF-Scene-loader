@@ -3,6 +3,7 @@
 // location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
 //}
 function requestDeviceMotionPerm () {
+    document.getElementById('device-permission-modal').setAttribute("style", "display:none;");
     if (typeof DeviceMotionEvent.requestPermission === 'function') {
     DeviceMotionEvent.requestPermission()
       .then(permissionState => {
